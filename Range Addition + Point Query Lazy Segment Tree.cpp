@@ -56,7 +56,7 @@ void rangeAdd(int node, int start, int end, int l, int r, long long val) {
     tree[node] = tree[2*node] + tree[2*node+1];
 }
 
-// Point query
+
 // Range sum query
 long long rangeSum(int node, int start, int end, int l, int r) {
     push(node, start, end);
@@ -92,7 +92,7 @@ int main() {
         else if(type == 2) {
             int i;
             cin >> i;
-            cout << pointQuery(1, 0, n-1, i) << "\n";
+            cout << rangeSum(1, 0, n-1, i) << "\n";
         }
     }
 }
