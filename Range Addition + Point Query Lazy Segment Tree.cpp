@@ -57,16 +57,17 @@ void rangeAdd(int node, int start, int end, int l, int r, long long val) {
 }
 
 // Point query
-long long pointQuery(int node, int start, int end, int idx) {
+// Range sum query
+long long rangeSum(int node, int start, int end, int l, int r) {
     push(node, start, end);
 
-    if(start == end) return tree[node];
+    if(r < start || end < l) return 0;
+
+    if(l <= start && end <= r) return tree[node];
 
     int mid = (start + end) / 2;
-    if(idx <= mid)
-        return pointQuery(2*node, start, mid, idx);
-    else
-        return pointQuery(2*node+1, mid+1, end, idx);
+    return rangeSum(2*node, start, mid, l, r) +
+           rangeSum(2*node+1, mid+1, end, l, r);
 }
 
 int main() {
